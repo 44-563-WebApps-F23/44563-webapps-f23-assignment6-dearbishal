@@ -4,9 +4,7 @@
     <title> Know the Author</title>
 </head>
 <body>
-
 <h2>Author Entry Bishal Adhikari</h2>
-
 <form>
     <label for="secretString">The hidden author name:</label>
     <input type="password" id="secretString" value="Dickens"/><br />
@@ -15,26 +13,22 @@
     <input type="button" onclick="checkAuthor()" value="Check the guess">
 
 </form>
-
 <div id="results"> This text will be replaced </div>
-
 <script>
-    // Global variables to keep track of correct and incorrect guesses
+    // Global variables
     var good = 0;
     var oops = 0;
-
     function checkAuthor() {
         // Get the values from the input elements
         var secretAuthor = document.getElementById("secretString").value;
         var guessedAuthor = document.getElementById("guess").value;
-
         // Check if the guessed author matches the secret author
         if (secretAuthor === guessedAuthor) {
             good++;
-            document.getElementById("results").innerHTML = "You got it right";
+            document.getElementById("results").innerHTML = "You got it right! " + "Yeah Count: " + good  + " Opps count: " + oops;
         } else {
             oops++;
-            document.getElementById("results").innerHTML = "Sorry";
+            document.getElementById("results").innerHTML = "Sorry  " + " Opps count: " + oops +  " Yeah Count: " + good;
         }
     }
 </script>
