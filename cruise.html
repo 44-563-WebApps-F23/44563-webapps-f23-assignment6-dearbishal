@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cruise</title>
+</head>
+<body>
+
+<h2>Bishal goes on the Cruise</h2>
+
+<form>
+    <label for="form1_age">What is your age </label>
+    <input type="number" id="form1_age" name="form1_age" min="10" max="50" step="2" value="30"> <br>
+
+    <label for="form1_nick">What is your nickname </label>
+    <input type="text" id="form1_nick" name="form1_nick" autofocus> <br>
+
+    <div>
+        <label><input type="checkbox" id="checkboxSharesCabin" name="checkboxSharesCabin" value="True"> Shares Cabin</label><br>
+        <label><input type="checkbox" id="checkboxBreakfast" name="checkboxBreakfast" value="True"> Breakfast</label><br>
+        <label><input type="checkbox" id="checkboxPoolPass" name="checkboxPoolPass" value="False"> Pool Pass</label><br>
+    </div>
+
+    <input type="button" onclick="selectCruise()" value="Select a cruise">
+</form>
+
+<p id="cruiseResult">Cruise selection will be displayed here</p>
+
+<script>
+    var my_cruise = {};
+
+    function selectCruise() {
+        my_cruise = {};
+
+        my_cruise.shared = document.getElementById("checkboxSharesCabin").checked;
+        my_cruise.breakfast = document.getElementById("checkboxBreakfast").checked;
+        my_cruise.pool = document.getElementById("checkboxPoolPass").checked;
+
+        var resultParagraph = document.getElementById("cruiseResult");
+        resultParagraph.innerHTML = "Cruise Selection: " + JSON.stringify(my_cruise);
+    }
+</script>
+
+</body>
+</html>
