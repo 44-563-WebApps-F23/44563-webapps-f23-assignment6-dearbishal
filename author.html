@@ -11,7 +11,6 @@
     <label for="guess">Guess the author:</label>
     <input type="text" id="guess"/> <br>
     <input type="button" onclick="checkAuthor()" value="Check the guess">
-
 </form>
 <div id="results"> This text will be replaced </div>
 <script>
@@ -32,5 +31,31 @@
         }
     }
 </script>
+<div id="imageContainer">
+    <img id="Amsterdam" src="Amsterdam.jpg" width="100" height="100" onclick="selectImage('Amsterdam')">
+</div>
+
+<script>
+    var useImage = 1;
+    function selectImage(imageId) {
+        switch (useImage) {
+            case 1:
+                document.getElementById(imageId).src = "Athens.jpg";
+                useImage = 2;
+                break;
+            case 2:
+                document.getElementById(imageId).src = "Kyoto.jpg";
+                useImage = 3;
+                break;
+            case 3:
+                document.getElementById(imageId).src = "Amsterdam.jpg";
+                useImage = 1;
+                break;
+            default:
+                break;
+        }
+    }
+</script>
+
 </body>
 </html> 
