@@ -1,38 +1,71 @@
 <!DOCTYPE html>
 <html>
-    <title> Some Tips </title>
+<head>
+    <title>Some Tips</title>
+</head>
 <body>
+    <h2>Bishal shows tip amount</h2>
 
-<h2>Bishal shows tip amount</h2>
+    <form>
+        <label for="base_amount">Enter base amount</label>
+        <input type="number" id="base_amount" name="base_amount" min="10" max="50" step="2" value="50"><br>
 
-<form>
-    <label for="base_amount">Enter base amount </label>
-    <input type="number" id="base_amount" name="base_amount" min="10" max="50" step="2" value="50"><br>
+        <label for="percentage_tip">Enter the tip percent</label>
+        <input type="number" id="percentage_tip" name="percentage_tip" min="10" max="50" step="2" value="15"><br>
 
-    <label for="percentage_tip">Enter the tip percent </label>
-    <input type="number" id="percentage_tip" name="percentage_tip" min="10" max="50" step="2" value="15"><br>
+        <input type="button" onclick="tips()" value="Show tip">
+    </form>
 
-    <input type="button" onclick="tips()" value="Show tip">
-</form>
+    <p id="result">Tips will be displayed here</p>
 
-<p id="result">Tips will be displayed here</p>
+    <p>Here is the calculator</p>
 
-<script>
-    function tips() {
-        var baseAmount = parseFloat(document.getElementById("base_amount").value);
-        var tipPercent = parseFloat(document.getElementById("percentage_tip").value);
+    <form>
+        <label><input type="radio" id="sum" name="operation" value="sum" onclick="chooseOp()"> Sum</label><br>
+        <label><input type="radio" id="difference" name="operation" value="difference" onclick="chooseOp()"> Difference</label><br>
+        <label><input type="radio" id="product" name="operation" value="product" onclick="chooseOp()"> Product</label><br>
+    </form>
 
-        var tipsAmount = "";
-        var tip = tipPercent;
-        
-        for (var i = 0; i < 5; i++) {
-            tipsAmount += tip + "% is calculated tip: " + ((baseAmount * tip) / 100).toFixed(2) +"<br>"; 
-            tip += 4;
+    <div id="calculationResult"></div>
+
+    <script>
+        function tips() {
+            var baseAmount = parseFloat(document.getElementById("base_amount").value);
+            var tipPercent = parseFloat(document.getElementById("percentage_tip").value);
+
+            var tipsAmount = "";
+            var tip = tipPercent;
+
+            for (var i = 0; i < 5; i++) {
+                tipsAmount += tip + "% is calculated tip: " + ((baseAmount * tip) / 100).toFixed(2) + "<br>";
+                tip += 4;
+            }
+
+            document.getElementById("result").innerHTML = "Tips are: <br>" + tipsAmount;
         }
 
-        document.getElementById("result").innerHTML = "Tips are: <br>" + tipsAmount;
-    }
-</script>
+        function chooseOp() {
+            // Get the selected operation from radio buttons
+            var operation = document.querySelector('input[name="operation"]:checked').value;
 
+            // Get the base and tip values from input fields
+            var baseAmount = parseFloat(document.getElementById("base_amount").value);
+            var tipPercent = parseFloat(document.getElementById("percentage_tip").value);
+
+            // Perform actions based on the selected operation
+            var result;
+
+            if (operation === "sum") {
+                result = baseAmount + tipPercent;
+            } else if (operation === "difference") {
+                result = baseAmount - tipPercent;
+            } else if (operation === "product") {
+                result = baseAmount * tipPercent;
+            }
+
+            // Display the result in the "calculationResult" div
+            document.getElementById("calculationResult").innerHTML = "Result: " + result;
+        }
+    </script>
 </body>
-</html> 
+</html>
